@@ -1,0 +1,12 @@
+{
+  "name": "betterhotkey",
+  "displayName": "betterHotKey",
+  "author": "DeterMination",
+  "version": "1.2.1",
+  "minGameVersion": 154,
+  "description": "让 Mindustry 的建造快捷键更稳定、更顺手。\n- 建筑信息栏内直接显示快捷键提示\n- 数字快捷键可忽略地形干扰\n- 支持自定义双键建筑快捷键\n- 被禁建筑保持原菜单顺序",
+  "main": "betterhotkey.BetterHotKeyMod",
+  "mainX": "betterhotkey.BetterHotKeyModX",
+  "hidden": true,
+  "java": true
+}

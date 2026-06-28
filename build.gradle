@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "betterhotkey"
-version = "1.2.1"
+version = "1.2.2"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -15,16 +15,7 @@ repositories {
     maven { url "https://jitpack.io" }
 }
 
-def mindustryVersion = (findProperty("mindustryVersion") ?: "v154.3").toString()
-
-configurations.configureEach {
-    resolutionStrategy.eachDependency { details ->
-        if (details.requested.group == "com.github.Anuken.Arc" && details.requested.version == "ec5df18e54") {
-            details.useVersion(mindustryVersion)
-            details.because("Use JitPack Arc tag artifacts for stable dependency resolution")
-        }
-    }
-}
+def mindustryVersion = (findProperty("mindustryVersion") ?: "v154.2").toString()
 
 dependencies {
     if (rootProject.findProject(":core") != null) {

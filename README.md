@@ -1,4 +1,10 @@
 # betterHotKey
+<h1 align="center">
+  <a href="https://github.com/DeterMination-Wind/betterHotKey/releases/latest"><img src="https://img.shields.io/github/v/release/DeterMination-Wind/betterHotKey?display_name=release&label=Latest%20Release&color=green"></a>
+  <a href="https://github.com/DeterMination-Wind/betterHotKey/releases"><img src="https://img.shields.io/github/downloads/DeterMination-Wind/betterHotKey/total?label=Downloads&color=blue"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/DeterMination-Wind/betterHotKey?label=License"></a>
+  <a href="https://github.com/DeterMination-Wind/betterHotKey"><img src="https://img.shields.io/github/stars/DeterMination-Wind/betterHotKey?style=flat&label=Star%20this%20mod!&color=yellow"></a>
+</h1>
 
 一个让 Mindustry 建造快捷键更稳定、更顺手的客户端模组。
 

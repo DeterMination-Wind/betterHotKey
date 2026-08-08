@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "betterhotkey"
-version = "1.2.3"
+version = "1.2.4"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -169,6 +169,7 @@ tasks.named("jarAndroid").configure {
 
 def buildOutDir = new File(rootDir.parentFile, "构建/${project.name}")
 def projectBuildOutDir = new File(projectDir, "构建/${project.name}")
+def isDevBuild = project.version.toString() == "0.0.0"
 
 tasks.register("copyZipToBuildDir", Copy) {
     doNotTrackState("Copies zip artifact to workspace output folder")
@@ -257,7 +258,7 @@ tasks.register("copyMergedJarToBuildDir", Copy) {
     dependsOn tasks.named("jarMerged")
     from(tasks.named("jarMerged").flatMap { it.archiveFile })
     into(buildOutDir)
-    rename { _ -> "${mergedArchiveBase}-${project.version}.jar" }
+    rename { _ -> isDevBuild ? "${mergedArchiveBase}-dev.jar" : "${mergedArchiveBase}-${project.version}.jar" }
 }
 
 tasks.register("copyMergedJarToProjectBuildDir", Copy) {
@@ -265,7 +266,7 @@ tasks.register("copyMergedJarToProjectBuildDir", Copy) {
     dependsOn tasks.named("jarMerged")
     from(tasks.named("jarMerged").flatMap { it.archiveFile })
     into(projectBuildOutDir)
-    rename { _ -> "${mergedArchiveBase}-${project.version}.jar" }
+    rename { _ -> isDevBuild ? "${mergedArchiveBase}-dev.jar" : "${mergedArchiveBase}-${project.version}.jar" }
 }
 
 tasks.register("copyMergedZipToBuildDir", Copy) {
@@ -273,7 +274,7 @@ tasks.register("copyMergedZipToBuildDir", Copy) {
     dependsOn tasks.named("zipMerged")
     from(tasks.named("zipMerged").flatMap { it.archiveFile })
     into(buildOutDir)
-    rename { _ -> "${mergedArchiveBase}-${project.version}.zip" }
+    rename { _ -> isDevBuild ? "${mergedArchiveBase}-dev.zip" : "${mergedArchiveBase}-${project.version}.zip" }
 }
 
 tasks.register("copyMergedZipToProjectBuildDir", Copy) {
@@ -281,19 +282,25 @@ tasks.register("copyMergedZipToProjectBuildDir", Copy) {
     dependsOn tasks.named("zipMerged")
     from(tasks.named("zipMerged").flatMap { it.archiveFile })
     into(projectBuildOutDir)
-    rename { _ -> "${mergedArchiveBase}-${project.version}.zip" }
+    rename { _ -> isDevBuild ? "${mergedArchiveBase}-dev.zip" : "${mergedArchiveBase}-${project.version}.zip" }
 }
 
 tasks.named("jarMerged").configure {
-    finalizedBy tasks.named("copyMergedJarToDist")
-    finalizedBy tasks.named("copyMergedJarToBuildDir")
-    finalizedBy tasks.named("copyMergedJarToProjectBuildDir")
+    if (isDevBuild) {
+        finalizedBy tasks.named("copyMergedJarToBuildDir")
+    } else {
+        finalizedBy tasks.named("copyMergedJarToDist")
+        finalizedBy tasks.named("copyMergedJarToBuildDir")
+        finalizedBy tasks.named("copyMergedJarToProjectBuildDir")
+    }
 }
 
 tasks.named("zipMerged").configure {
-    finalizedBy tasks.named("copyMergedZipToDist")
-    finalizedBy tasks.named("copyMergedZipToBuildDir")
-    finalizedBy tasks.named("copyMergedZipToProjectBuildDir")
+    if (!isDevBuild) {
+        finalizedBy tasks.named("copyMergedZipToDist")
+        finalizedBy tasks.named("copyMergedZipToBuildDir")
+        finalizedBy tasks.named("copyMergedZipToProjectBuildDir")
+    }
 }
 
 tasks.register("deploy") {

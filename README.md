@@ -1,5 +1,7 @@
 # betterHotKey
 
+> [NOTE] 若有反馈，请发送反馈到bugsoc@qq.com / If you have any feedback, please send it to bugsoc@qq.com
+
 > 让建造快捷键变成习惯，而不是需要反复寻找的菜单。
 
 betterHotKey 改善 Mindustry 的建造键位体验。它帮助你保持稳定的数字建造顺序，为常用建筑安排组合键，并在建筑信息中直接看到对应提示。

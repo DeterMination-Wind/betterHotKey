@@ -1,6 +1,7 @@
 # betterHotKey
 
-> [NOTE] 若有反馈，请发送反馈到bugsoc@qq.com / If you have any feedback, please send it to bugsoc@qq.com
+> [!NOTE]
+> 若有反馈，请发送反馈到bugsoc@qq.com / If you have any feedback, please send it to bugsoc@qq.com
 
 > 让建造快捷键变成习惯，而不是需要反复寻找的菜单。
 
